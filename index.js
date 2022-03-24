@@ -26,17 +26,32 @@ inputField.value = ''
 document.querySelector('form').addEventListener('submit', addMovie);
 
 function deleteMovie(e) {
+    message.textContent = `${event.target.parentNode.firstChild.textContent} deleted!`
+    
     e.target.parentNode.remove();
     message.textContent = 'Movie deleted!';
+    revealMessage()
 }
 
 function crossOffMovie(e) {
     e.target.classList.toggle('checked')
     
     if (e.target.classList.contains('checked') === true) {
-        message.textContent = 'Movie watched'
+        message.textContent = 'Movie watched';
+        message.textContent = `${e.target.textContent} watched!`
 
     } else {
         message.textContent = 'Movie added back!'
+        message.textContent = `${e.target.textContent} added back!`
+
     }
+    revealMessage()
+}
+
+function revealMessage() {
+    message.classList.remove('hide')
+
+    setTimeout(() => {
+        message.classList.add('hide')
+    }, 1000)
 }
